@@ -1,0 +1,45 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.Drink>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<hr />
+<hr />
+<h1>Onze Drinkenkaart!</h1>
+<hr />
+<hr />
+
+<table id="customers2">
+    <thead>
+        <tr>
+            <th>
+            </th>
+            <th>
+                Drank
+            </th>
+            <th>
+                Prijs
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/images/drinken.png" alt="Sample Image" width="200px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    €@Html.DisplayFor(modelItem => item.Price)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<div>
+    <a class="nav-link text-muted border-top" asp-area="" asp-controller="Home" asp-action="Index">Ga terug naar de Homepage</a>
+</div>

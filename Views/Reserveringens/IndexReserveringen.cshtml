@@ -1,0 +1,22 @@
+﻿@model D_Einder_MVC.Models.IndicatorViewModel
+
+
+<br />
+<br />
+<h1>Aantal Reserveringen</h1>
+<div class="margin"></div>
+<table id="customers">
+    <thead>
+        <tr>
+            <th>Aantal Reserveringen</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>@Model.Reservaties.Count(g => g.Naam == g.Naam) / @Model.Tafels.Count(g => g.Id == g.Id)</td>
+        </tr>
+    </tbody>
+</table>
+<hr />
+<p><a class="btn btn-success" asp-area="" asp-controller="Reservaties" asp-action="Index">Terug</a> </p>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.Tafel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<hr />
+
+<h1 class="text-info">Tafels - Hoofdpagina</h1>
+<hr />
+
+
+
+<br />
+
+
+<hr />
+
+
+<p class="text-xl-center"><a asp-action="Create" class="btn btn-success">Voeg Tafel</a><p>
+
+    <hr />
+
+
+
+    <div class="flex-container-tafel">
+            @foreach (var item in Model)
+            {
+            <div class="flex-item">
+                <a asp-route-id="@item.Id" asp-action="Details"> @Html.DisplayFor(modelItem => item.Naam)</a><br /><br />
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+            </div>
+
+            }
+    </div>

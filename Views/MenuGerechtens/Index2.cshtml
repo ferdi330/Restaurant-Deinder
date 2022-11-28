@@ -1,0 +1,54 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.MenuGerechten>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<h1>Menu gerechten</h1>
+
+    <br />
+    <table id="customers3">
+        <thead>
+            <tr>
+                <th>
+
+                </th>
+
+                <th>
+                    Menu
+                </th>
+                <th>
+                    Gerechten van Menu
+                </th>
+                <th>
+                    Soort Gerecht
+                </th>
+                
+            </tr>
+        </thead>
+        <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    
+                <td>
+                    <img src="~/images/chicken.png" alt="Sample Image" width="200px" />
+                </td>
+                    
+
+                    <td>
+                            @Html.DisplayFor(modelItem => item.Menus.Naam)
+                    </td>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.Gerechten.Naam)
+                    </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Gerechten.GerechtSoort)
+                </td>
+                  
+                </tr>
+                }
+        </tbody>
+    </table>

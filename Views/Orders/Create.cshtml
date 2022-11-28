@@ -1,0 +1,42 @@
+﻿@model D_Einder_MVC.Models.Order
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+
+<div class="main_inlog_border_two">
+<h4>Order</h4>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="MenuNaam" class="control-label"></label>
+                <select asp-for="MenuNaam" class="form-control" asp-items="ViewBag.MenuNaam"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReserveringenId" class="control-label"></label>
+                <select asp-for="ReserveringenId" class ="form-control" asp-items="ViewBag.ReserveringenId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hoeveelheid" class="control-label"></label>
+                <input asp-for="Hoeveelheid" class="form-control" />
+                <span asp-validation-for="Hoeveelheid" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Terug naar overzicht</a>
+</div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

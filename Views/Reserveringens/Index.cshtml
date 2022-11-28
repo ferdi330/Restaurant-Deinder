@@ -1,0 +1,78 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.Reserveringen>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Reserveringen</h1>
+
+<br />
+<div class="box-button">
+    <a class="btn nav-link text-dark border" asp-area="" asp-controller="Reserveringens" asp-action="IndexReserveringen"><h2>Aantal Reserveringen</h2></a>
+</div>
+<br />
+
+
+
+<div class="p-4 border rounded">
+    <p>
+        <a asp-action="Create"><h2 class="btn btn-warning">Reservering Inplannen</h2></a>
+        <a asp-controller="Orders" asp-action="TafelOverzicht"><h2 class="btn btn-info">Financiële Overzicht lijst</h2></a>
+        <a asp-controller="Tafels" asp-action="IndexTafels"><h2 class="btn btn-light">Tafel Overzicht + Bestelde gerechten</h2></a>
+    </p>
+
+<table id="customers">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Date)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tijd)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Woonplaats)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tafel)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tijd)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Woonplaats)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tafel.Id)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>

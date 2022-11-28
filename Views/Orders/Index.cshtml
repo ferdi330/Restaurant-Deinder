@@ -1,0 +1,47 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<h1>Orders</h1>
+<br /><p><a asp-action="Create" class="btn btn-success">Voeg Toe</a><p><br />
+
+<table id="customers">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Reserveringen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.MenuNaam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Hoeveelheid)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reserveringen.Naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuNaam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hoeveelheid)
+                </td>
+                <td>
+                        <a asp-controller="Reserveringens" class="btn btn-info" asp-action="Edit" asp-route-id="@item.ReserveringenId">Edit</a> |
+                        <a asp-controller="Reserveringens" class="btn btn-info" asp-action="Details" asp-route-id="@item.ReserveringenId">Details</a> |
+                        <a asp-controller="Reserveringens" class="btn btn-info" asp-action="Delete" asp-route-id="@item.ReserveringenId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

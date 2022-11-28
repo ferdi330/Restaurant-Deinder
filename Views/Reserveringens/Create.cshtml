@@ -1,0 +1,93 @@
+﻿@model D_Einder_MVC.Models.Reserveringen
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+@{
+    if (!string.IsNullOrEmpty(ViewBag.ErrorMessage))
+    {
+        <div class="margi">
+            <div class="btn btn-danger">
+                <p>
+                    <h3>@Html.Raw(ViewBag.ErrorMessage)</h3>
+                </p>
+            </div>
+        </div>
+    }
+    @Html.AntiForgeryToken()
+}
+
+<div class="margin2"></div>
+<div class="flex-container-reserveer">
+    <div class="flex-item-left-reserveer">
+        <div class="main_inlog_border_four">
+            <h1>Reserveer!</h1>
+            <h4 class="text-info">Vul je gegevens in</h4>
+            <hr />
+            <div class="row">
+                <div class="col-md-10">
+                    <form asp-action="Create">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="form-group">
+                            <label asp-for="Date" class="control-label"></label>
+                            <input asp-for="Date" class="form-control" />
+                            <span asp-validation-for="Date" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Tijd" class="control-label"></label>
+                            <select asp-for="Tijd" class="form-control" asp-items="ViewBag.Tijd"></select>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Naam" class="control-label"></label>
+                            <input asp-for="Naam" class="form-control" />
+                            <span asp-validation-for="Naam" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Adress" class="control-label"></label>
+                            <input asp-for="Adress" class="form-control" />
+                            <span asp-validation-for="Adress" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Woonplaats" class="control-label"></label>
+                            <input asp-for="Woonplaats" class="form-control" />
+                            <span asp-validation-for="Woonplaats" class="text-danger"></span>
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="TafelId" class="control-label"></label>
+                            <select asp-for="TafelId" class="form-control" asp-items="ViewBag.TafelId"></select>
+                        </div>
+
+                        <div class="main_inlog_border_four">
+                            <h1>Kies een menu uit!</h1>
+                            <h4 class="text-info">Vul een aantal menu's in</h4>
+                            <hr />
+                            <div class="row">
+                                <div class="col-md-10">
+                                    @foreach (var item in (IEnumerable<Menu>)ViewData["Menus"])
+                                    {
+                                        <div>
+                                            <h3>@Html.DisplayFor(modelItem => item.Naam) </h3>
+                                            <label>Prijs: @Html.DisplayFor(modelItem => item.Prijs) Euro </label><br />
+                                            <label>Aantal</label>     <input placeholder="Hoeveelheid" type="number" min="0" name="menu[@Html.DisplayFor(modelItem => item.Id)]" maxlength="30" value="0">
+
+                                        </div>
+
+                                    }
+                                    <br /> </br>
+                                    <div class="form-group">
+                                        <input type="submit" value="Create" class="btn btn-primary" />
+                                    </div>
+                    </form>
+                </div>
+                <div></div>
+
+                <div>
+                    <a asp-action="Index">Back to List</a>
+                </div>
+
+                @section Scripts {
+                    @{
+                        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+                    }
+                }

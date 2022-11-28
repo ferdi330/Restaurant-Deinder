@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<div class="text-center">
+    <h1 class="ferdi">Welkom bij D'Einder !</h1>
+    <div class="image-stock"><img src="~/images/restaurant-slider1.jpg" style="width:60%; height:275px"></div>
+</div>
+
+<div class="box-diner">
+    <h2 class="diner-h">D'Einder Diner</h2>
+    <p class="diner-p"> Verrassend eerlijke gerechten in een sfeervolle ambiance. Onze restaurant heeft de ideale locatie voor een uitgebreid diner.</p>
+    <p class="diner-p"> In de Restaurant D'Einder bereiden onze ervaren keukenbrigades elke dag met plezier de lekkerste gerechten voor u klaar met dagverse ingrediënten.</p>
+
+</div>
+<br />
+
+
+
+<!-- Tafel section -->
+    <div class="flex-container">
+        <div class="flex-item-left">
+            <h3 class="main-text-options">Reserveer een tafel</h3>
+            <p class="small-options-text">U kunt hier online reserveren</p>
+            <p> <a asp-controller="Reserveringens" asp-action="Create"><h2 class="btn btn-warning">Reserveer</h2></a></p>
+        </div>
+
+        <div class=" flex-item-middle">
+            <h3 class="main-text-options">Menukaart</h3>
+            <p class="small-options-text">Bekijk hier onze menukaart</p>
+            <a asp-controller="Menus" asp-action="Index2"><h2 class="btn btn-warning">Menukaart</h2></a>
+        </div>
+        <div class=" flex-item-right">
+        <h3 class="main-text-options">Drinkenkaart</h3>
+        <p class="small-options-text">Bekijk hier onze menukaart</p>
+        <a asp-controller="Drinks" asp-action="Index2"><h2 class="btn btn-warning">Drinkenkaart</h2></a>
+    </div>
+   </div>
+
+    <!-- Authenticator check section -->
+<div class="text-center auto">
+    @if (User.Identity.IsAuthenticated)
+    {
+
+        @if (User.IsInRole("Personeel"))
+        {
+            <h2>Your role is - Personeel</h2>
+        }
+        else
+        {
+            <h2>Your role is - Admin</h2>
+        }
+    }
+</div>
+

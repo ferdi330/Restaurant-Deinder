@@ -1,0 +1,109 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.MenuGerechten>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<h1>Kok Overzicht </h1>
+<div class="margin2"></div>
+<table id="customers">
+    <thead>
+        <tr>
+            <th>
+                Naam van Klant TEST
+            </th>
+            <th>
+                Tafel Nummer TEST
+            </th>
+            <th>
+                Menu Prijs TEST
+            </th>
+            <th>
+                Hoeveelheid TEST
+            </th>
+            <th>
+                Totaal Prijs per Aantal Menu TEST
+            </th>
+
+        </tr>
+    </thead>
+
+
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+           
+
+
+
+            <tr>
+              
+                <td>
+                    @Html.DisplayFor(modelItem => item.Menus.MenuSoort)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Menus.MenuGerechten)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.GerechtenId)
+
+                </td>
+              
+
+            </tr>
+        }
+
+
+
+
+    <thead>
+        <tr>
+            <th>
+                Drink Naam TEST
+            </th>
+            <th>
+                Tafel Nummer TEST
+            </th>
+            <th>
+                Prijs TEST
+            </th>
+            <th>
+                Aantal TEST
+            </th>
+            <th>
+                Totaal 
+            </th>
+        </tr>
+    </thead>
+
+
+
+        @foreach (var item in (IEnumerable<GerechtenIngredienten>)ViewData["Ingredienten"])
+        {
+
+            var resultingredientcount = item.Hoeveelheid * item.GerechtenId;
+        <tr>
+
+            <td>@Html.DisplayFor(modelItem => item.Gerechten.Naam) </td>
+            <td>@Html.DisplayFor(modelItem => item.Gerechten.GerechtSoort)</td>
+            <td>@Html.DisplayFor(modelItem => item.Hoeveelheid)</td>
+            <td>@Html.DisplayFor(modelItem => item.Ingredienten.Naam)</td>
+            <td>@Html.DisplayFor(modelItem => resultingredientcount)</td>
+
+        </tr>
+        }
+
+
+    </tbody>
+</table>
+<div class="margin2"></div>
+
+<hr />
+
+<div>
+    <a class="nav-link text-muted border-top" asp-controller="Reservaties" asp-action="Index">Terug</a>
+</div>

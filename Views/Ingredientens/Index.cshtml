@@ -1,0 +1,39 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.Ingredienten>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ingredienten</h1>
+<br /><p><a asp-action="Create" class="btn btn-success">Voeg Toe</a><p>
+    <br />
+<table id="customers">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Eenheid)
+            </th>
+            <th>Bewerk</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Eenheid)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Bewerk</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

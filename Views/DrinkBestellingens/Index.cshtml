@@ -1,0 +1,45 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.DrinkBestellingen>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Bestelde Drank</h1>
+<br /><p><a asp-action="Create" class="btn btn-success">Voeg Toe</a><p>
+    <br />
+<table id="customers">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Tafel)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Drink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Aantal)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tafel.Naam)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Drink.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Aantal)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

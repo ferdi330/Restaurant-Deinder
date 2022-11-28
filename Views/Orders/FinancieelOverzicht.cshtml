@@ -1,0 +1,121 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.Order>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<br />
+<h1 class="text-info"> Financiële overzicht - Hoofdpagina</h1>
+
+<div class="margin2"></div>
+<table id="customers">
+    <thead>
+        <tr>
+            <th>
+                Naam van Klant
+            </th>
+            <th>
+                Tafel Nummer
+            </th>
+            <th>
+                Menu Prijs
+            </th>
+            <th>
+                Hoeveelheid
+            </th>
+            <th>
+                Totaal Prijs per Aantal Menu
+            </th>
+
+            <th>
+                Totaal Prijs van Tafel
+            </th>
+       
+        </tr>
+    </thead>
+
+
+
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var result = item.Menu.Prijs * item.Hoeveelheid;// De Aantal keer de gekozen drank = result
+            var result2 = result; // Totaal prijs van de menu en gekozen drank
+            var result3 = result * item.Reserveringen.Id;
+
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reserveringen.Naam)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reserveringen.TafelId)
+
+                </td>
+                <td>
+                    $@Html.DisplayFor(modelItem => item.Menu.Prijs)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hoeveelheid)
+
+                </td>
+                <td>
+                      $@Html.DisplayFor(modelItem => result)
+                </td>
+                
+            </tr>
+        }
+    </tbody>
+
+    <tbody>
+
+        
+    <thead>
+        <tr>
+            <th>
+                Drink Naam
+            </th>
+            <th>
+                Tafel Nummer
+            </th>
+            <th>
+                Prijs
+            </th>
+            <th>
+                Aantal
+            </th>
+            <th>
+                Totaal Prijs ( Drinken )
+            </th>
+        </tr>
+    </thead>
+
+
+
+    @foreach (var item in (IEnumerable<DrinkBestellingen>)ViewData["DrinkBestellingen"])
+    {
+
+           var resultdrinkprijs = item.Drink.Price * item.Aantal;// De Aantal keer de gekozen drank = result
+
+        <tr>
+            
+            <td>@Html.DisplayFor(modelItem => item.Drink.Name) </td>
+            <td>@Html.DisplayFor(modelItem => item.TafelId)</td>
+            <td>$@Html.DisplayFor(modelItem => item.Drink.Price)</td>
+            <td>@Html.DisplayFor(modelItem => item.Aantal)</td>
+            <td>$@Html.DisplayFor(modelItem => resultdrinkprijs)</td>
+       
+        </tr>
+    }
+           
+</table>
+<div class="margin2"></div>
+
+<hr />
+
+<div>
+    <a class="nav-link text-muted border-top" asp-controller="Reservaties" asp-action="Index">Terug</a>
+</div>

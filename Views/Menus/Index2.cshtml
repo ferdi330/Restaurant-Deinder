@@ -1,0 +1,58 @@
+﻿@model IEnumerable<D_Einder_MVC.Models.Menu>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Gerechten Menu</h1><br />
+
+<div class="btn btn-sucess">
+<a class="nav-link text-muted border" asp-area="" asp-controller="MenuGerechtens" asp-action="Index2">Detailed Menu</a>
+</div>
+<br />
+<table id="customers3">
+    <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Naam)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Prijs)
+            </th>
+            <th>
+                Menu Thema
+            </th>
+         
+            
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img src="~/images/Donermenu.png" alt="Sample Image" width="200px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Naam)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Prijs)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuSoort.Naam)
+                </td>
+
+               
+
+
+            </tr>
+        }
+    </tbody>
+</table>
+<div>
+    <a class="nav-link text-muted border-top" asp-area="" asp-controller="Home" asp-action="Index">Ga terug naar de Homepage</a>
+</div>

@@ -1,0 +1,167 @@
+﻿@model D_Einder_MVC.Models.OmzetViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<br />
+
+<h1 class="text-info"> Financiële overzicht - Hoofdpagina</h1>
+<br />
+<div class="btn btn-info">
+    <a class="nav-link text-muted border-top" asp-controller="Reserveringens" asp-action="Index">Terug</a>
+</div>
+<br />
+<br />
+<h2>Menu omzet</h2>
+<table id="customers3">
+    <thead>
+        <tr>
+            <th>
+                Reservering Nr:
+            </th>
+            <th>
+                Klant
+            </th>
+            <th>
+                Tafel Nummer
+            </th>
+            <th>
+                Menu:
+            </th>
+            <th>
+                Menu Prijs:
+            </th>
+            <th>
+                Aantal:
+            </th>
+            <th>
+                MenuTotaal: Prijs X Aantal =
+            </th>
+                  
+        </tr>
+    </thead>
+
+
+    <tbody>
+        @foreach (var item in Model.BesteldeMenu)
+        {
+            var realsum = item.Menu.Prijs * item.Hoeveelheid;
+           // var realsum2 = @Model.BesteldeDrinken(i => i.Drink.Price * i.Aantal);
+
+
+        
+
+           // var totaaldrinken = @Model.BesteldeDrinken.Sum(i => i.Drink.Price * i.Aantal);
+
+          //  var totalreal = totaal + totaaldrinken;
+            
+
+            var result = item.Menu.Prijs * item.Hoeveelheid;// De Aantal keer de gekozen drank = result
+            var result2 = result; // Totaal prijs van de menu en gekozen drank
+            var result3 = result * item.Reserveringen.Id;
+
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reserveringen.Id)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reserveringen.Naam)
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Reserveringen.TafelId)
+
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuNaam)
+                </td>
+
+                <td>
+                    €  @Html.DisplayFor(modelItem => item.Menu.Prijs) 
+
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Hoeveelheid)
+
+                </td>
+                <td>
+                    €  @Html.DisplayFor(modelItem => result) 
+                </td>                    
+            </tr>
+        }
+
+
+    </tbody>
+
+</table>
+
+<div class="margin2"></div>
+<h2>Drank omzet</h2>
+
+<table id="customers3">
+
+    <thead>
+        <tr>
+            <th>
+                Drank
+            </th>
+            <th>
+                Tafel Nr:
+            </th>
+            <th>
+                Prijs:
+            </th>
+            <th>
+                Aantal:
+            </th>
+            <th>
+                DrankTotaal: Prijs X Aantal =
+            </th>
+        </tr>
+    </thead>
+
+
+
+        @foreach (var item in (IEnumerable<DrinkBestellingen>)ViewData["DrinkBestellingen"])
+        {
+
+          var resultdrinkprijs = item.Drink.Price * item.Aantal;// De Aantal keer de gekozen drank = result
+
+          <tr>
+            
+            <td>@Html.DisplayFor(modelItem => item.Drink.Name) </td>
+            <td>@Html.DisplayFor(modelItem => item.TafelId)</td>
+            <td>€  @Html.DisplayFor(modelItem => item.Drink.Price) </td>
+            <td>@Html.DisplayFor(modelItem => item.Aantal)</td>
+            <td>€  @Html.DisplayFor(modelItem => resultdrinkprijs) </td>
+       
+          </tr>
+        }
+        
+
+</table>
+<br />
+<hr />
+@{
+    var Menutotaal = @Model.BesteldeMenu.Sum(i => i.Menu.Prijs * i.Hoeveelheid);
+    var Dranktotaal = @Model.BesteldeDrinken.Sum(i => i.Drink.Price * i.Aantal);
+    var Totaliteit = Menutotaal + Dranktotaal;
+
+    <div>
+        <h3>MenuTotaal = € @Html.DisplayFor(modelItem => Menutotaal) </h3>
+        <h2>DrankTotaal = € @Html.DisplayFor(modelItem => Dranktotaal) </h2>
+
+        <h1> MenuTotaal + DrankTotaal = € @Html.DisplayFor(modelItem => Totaliteit)  </h1>
+    </div>
+}
+<div class="margin2"></div>
+
+<br />
+
+
